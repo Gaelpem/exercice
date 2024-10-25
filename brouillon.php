@@ -1,5 +1,5 @@
 <?php
-
+/*
 $salarie = [
     ['nom' => 'Durant',"age" => '29' , 'prenom' => 'Loic','age' => 29,'profession' => 'webmaster','site' =>'openclassroom'],
     ['nom' => 'Dupont',"age" => '55', 'prenom' => 'Loic','age' => 55,'profession' =>'integrateur','site' => 'alsacreation'],
@@ -46,9 +46,42 @@ echo '</table>';
     }
     </style>
 
-<?php
 
-$tab = array("pomme", "fraise" , "orange"); 
-foreach($p=0; count($tab); $p++){
-    echo $tab[$p];
+
+<?php
+for ($i = 1; $i <= 10; $i++) {
+      echo "Table de multiplication de $i<br>";
+      for ($j = 0; $j <= 10; $j++) {
+            echo "$i x $j = " . $i * $j . "<br>";
+      }
+      echo '<hr>';
 }
+?>
+
+<?php
+// nombre pair jusqu'à 20 
+
+for ($p = 1 ; $p <= 20 ;$p++){
+    if($p % 2 == 0 ){
+        echo $p . "<br>";
+    }
+}
+
+
+// nombre factorielle 
+/*
+$n= 5; 
+$f= 1; 
+for($h=1; $h<= $n; $h++){
+    $f *= $h; 
+    echo $f .'<br>';
+}
+
+for($q=1; $q<=5; $q++) {  
+    for($j=1;$j<=$q;$j++ ){
+        echo "*" ;
+    }
+ echo " <br>";
+
+}
+*/
