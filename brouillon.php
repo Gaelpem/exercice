@@ -82,6 +82,19 @@ for($q=1; $q<=5; $q++) {
         echo "*" ;
     }
  echo " <br>";
-
 }
-*/
+
+ */
+$menus = array(  
+"Entrées" => array("Pain", "Légumes", "Toast"),
+"Plats" => array("Agneau" , "Kebab", "Pizza"),
+"Desserts" => array("Tiramisu" ,"Glace","Pates")
+); 
+
+ foreach($menus as $entree => $plat){
+
+    echo "<ul><li>$entree : <ul><li>{$plat[0]}</li><li>{$plat[1]}</li><li>{$plat[2]}</li></ul></li></ul>";
+}
+
+
+ 
