@@ -84,7 +84,7 @@ for($q=1; $q<=5; $q++) {
  echo " <br>";
 }
 
- */
+ Exercice : MENU 
 $menus = array(  
 "Entrées" => array("Pain", "Légumes", "Toast"),
 "Plats" => array("Agneau" , "Kebab", "Pizza"),
@@ -96,5 +96,45 @@ $menus = array(
     echo "<ul><li>$entree : <ul><li>{$plat[0]}</li><li>{$plat[1]}</li><li>{$plat[2]}</li></ul></li></ul>";
 }
 
+
+function estPair($nombre) {
+    return ($nombre % 2 == 0 );
+} 
+ $result = estPair(9) ;
+
+if ($result){
+    echo " 9 est pair ! ";
+}else{
+    echo " 9 est impair !! "; 
+}
+*/ 
+
+
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form  action="" method="POST"  action="<?= $_SERVER['PHP_SELF']; ?>">
+       <label for=""></label>
+       <input type="color" name="Color" >
+       <input type="submit" name="color" value="Appliquée la couleur sélectionné">
+
+    </form>
+</body>
+</html>
+
+<style>
+   body{
+    background:yellow; 
+   }
+    </style>
 
  
