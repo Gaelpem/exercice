@@ -305,7 +305,7 @@ if($couleur == 'rouge'){
 
  echo strstr($email, '@') . 'br'; 
 
- #icon_strlen(): retourne la longueur d'une chaine de caractère 
+ #iconv_strlen(): retourne la longueur d'une chaine de caractère 
  echo iconv_strlen($texte) . '<br>';
 
  #substr() : retourne une partie de la chaine de caracteres
