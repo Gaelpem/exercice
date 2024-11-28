@@ -1,84 +1,64 @@
 <?php
-session_start(); 
+class   Devinette{
+       
+    private $a ; 
+    public function __construct($a = null){
+        $this->a = $a;
+    }
+    public function verfiMot($a){
+        $mot = "jaune,rouge,rose";
+        
+        $trouverMot = false; 
+        if(is_string(strtolower($a))){
+         
+       
+          
+        $couleurs = explode(',', $mot); 
 
-class Devinette{
-    private $lettre;
-
-    public function __construct($lettre = null){
-        if($lettre !== null){
-            $this->setLettre($lettre); 
+        $couleurs = array_map('trim', $couleurs);
+        
+        if (in_array(strtolower($a), $couleurs)) {
+            $trouverMot = true;
+        }
+        
+        }
+        if( $trouverMot){
+            $this->a = $a; 
+        }else{
+            throw new Exception('Couleur incorrect'); 
         }
     }
 
-   public function setLettre($lettre){
-       $mot = "fraise"; 
+ public function affich(){
+    return "Bonne couleur : ".$this->a; 
+ }
 
-       $LettreTrouver = false; 
-
-       if(is_string(strtolower($lettre)) && strlen($lettre) === 1){
-        foreach(str_split($mot) as $valeur){
-           if($lettre === $valeur) {
-            $LettreTrouver = true;
-            break;  
-           }
-            
-        }
-        if($LettreTrouver){
-            $this->lettre = $lettre; 
-        } else {
-            throw new Exception("Lettre incorrecte"); 
-        }
-       } else {
-        throw new Exception("Vous devez rentrer seulement une lettre"); 
-       }
-   }
-
-   public function getLettre(){
-    return $this->lettre; 
-   }
 }
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['letter'])){
-    $letter = trim($_POST['letter']); 
-
-    if (!empty($letter)) {
-        try {
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["couleur"])){
+    $couleur = trim($_POST["couleur"]); 
+    
+    if(!empty($couleur)){
+        try{
             $devinette = new Devinette(); 
-            $devinette->setLettre($letter); 
-            $_SESSION['letter'] = $devinette->getLettre(); // Conservez la lettre dans la session
-        } catch (Exception $e) {
-            $_SESSION['error'] = $e->getMessage(); // Conservez l'erreur dans la session
+            $devinette->verfiMot( $couleur); 
+            echo $devinette->affich(); 
+        }catch (Exception $e){
+            echo $e->getMessage(); 
         }
-    } else {
-        $_SESSION['error'] = "Veuillez entrer une lettre."; 
     }
+
+  
 }
+
+
+
+
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Jeu de Devinette</title>
-</head>
-<body>
-    <?php
-    if (isset($_SESSION['error'])) {
-        echo "<p style='color:red;'>" . $_SESSION['error'] . "</p>";
-        unset($_SESSION['error']); // Réinitialiser l'erreur
-    }
 
-    if (isset($_SESSION['letter'])) {
-        echo "<p>Lettre trouvée : " . $_SESSION['letter'] . "</p>";
-    }
-    ?>
+<form action="" method="post">
+    <label for="">Couleur : </label>
+    <input type="text" name="couleur">
+    <input type="submit">
 
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-        <label for="letter">Déposer une lettre :</label>
-        <input type="text" id="letter" name="letter" value="<?= isset($_POST['letter']) ? $_POST['letter'] : (isset($_SESSION['letter']) ? $_SESSION['letter'] : '') ; ?>">
-        <input type="submit" value="Vérifier">
-    </form>
-
-    <a href="multi.php">Réinitialiser</a>
-</body>
-</html>
+</form>
