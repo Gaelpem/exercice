@@ -9,7 +9,7 @@ class   Devinette{
         $mot = "jaune,rouge,rose";
         
         $trouverMot = false; 
-        if(is_string(strtolower($a))){
+            if(is_string(strtolower($a))){
          
        
           
