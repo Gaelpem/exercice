@@ -1,83 +1,49 @@
 <?php
-session_start(); 
-
-if(!isset($_SESSION["mots_trouves"])){
-    $_SESSION["mots_trouvee"] = []; 
-}
 
 class Devinette{
-    private $word; 
+    public static $lettre = null; 
     
-    public function __construct($word = null){
-        if($word !== null){
-            $this->setLettre($word);
-        }
-    }
-
-    public function setLettre($word){
-        $mots = ["savon","jouet",]; 
+    
+    public static function verifLettre($lettre){
+        $mot = "gingembre"; 
          
-        if(!is_string($word)){
-        throw new Exception("Ce n'est pas une chaine de caractere"); 
+        if(is_string($lettre) && strlen($lettre) ===1){
+        //verification si la lettre est dans le mot 
+            if(strpos($mot, $lettre) !== false){
+               self::$lettre = $lettre; 
+            }else{
+                throw new Exception("Lettre introuvable"); 
+            }
+        }else{
+            throw new Exception("Ecrire une seule lettre"); 
         }
-
-        $word = strtolower($word); 
-
-        if(!in_array($word, $mots)){
-            throw new Exception("Mot introuvable"); 
-        }
- // Définir le mot seulement s'il est correct
-        $this->word = $word; 
+    }
+     
+    public static function affichLettre(){
+        return "Lettre trouvé : " . self::$lettre; 
     }
 
-    public function getLettre(){
-        return $this->word; 
-    }
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['letter'])){
-    $letter = trim($_POST['letter']); 
-    if(!empty($letter))
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["letter"])){
+    $letter = trim($_POST["letter"]); 
 
-    
-    {
-        try{     
-        $devinette = new Devinette(); 
-        $devinette->setLettre($letter);
-
-        if(!in_array($letter,  $_SESSION["mots_trouves"])){
-            $_SESSION["mots_trouves"][]= $letter ; 
-        }  
-
-        /* Si le mot soumis par l'utilisateur ($lettres) n'a pas encore été trouvé (c'est-à-dire qu'il n'est pas présent dans la session $_SESSION["mots_trouves"]),
-        Alors, on l'ajoute à la liste des mots trouvés stockée dans la session.
-        */
-
-        echo $devinette->getLettre(); 
-        }catch (Exception $e){
-            echo $e->getMessage(); 
-        }
-
+    if(!empty($letter)){
+     try{
+        Devinette::verifLettre($letter); 
+        echo Devinette::affichLettre(); 
+     }catch(Exception $e){
+        echo $e->getMessage(); 
+     }
+    }else{
+        echo " Assigner quelque chose"  ; 
     }
 }
-if(!empty($_SESSION["mots_trouves"])){
-    echo "<ul>"; 
-    foreach($_SESSION["mots_trouves"] as $mot){
-        echo "<li>".htmlspecialchars($mot)."</li>"; 
-       
-    } 
-    
-   echo  "</ul>"; 
-}else {
-    echo "<p>Aucun mot trouvé pour l'instant.</p>";
-}   
-
-
 
 ?>
 
-<form action="<?= $_SERVER["PHP_SELF"]; ?>" method="post">
-    <label for="">Mot : </label>
+<form action="" method="post">
+    <label for="">Lettre:</label>
     <input type="text" name="letter">
-    <button type="submit">Verrifier</button>
+    <input type="submit">
 </form>
