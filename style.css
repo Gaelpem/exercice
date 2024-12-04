@@ -1,23 +1,37 @@
-.figure{
-    margin-top: 10rem; 
-    background: black;
-    width: 0;   
-    height: 5px;
-    position:relative;
-    animation-name: slide;
-    animation-duration: 3s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
+.container{
+    margin: auto; 
+    background-color: grey;
+    width: 250px;
+    height: 300px;
+    border-radius: 4px;
 }
-@keyframes slide{
-    0%{
-        width: 0;
-        opacity: 0.1;
-    }
+.title{
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-size: 0.8rem;
+   width: 200px;
+   height: 30px;
+   display: flex;
+   justify-content: center;
+}
 
-    100%{
-        width: 200px;
-        opacity: 0.8;
-    }
-    
+.mini-container{
+    margin-bottom: 3rem;
+    display:flex; 
+    flex-direction: column;
+    padding: 1.3rem;
+    font-family:Georgia, 'Times New Roman', Times, serif; 
+}
+
+.mini-container input {
+    width: 200px;
+    border-radius: 3px;
+    border: none;
+    height: 20px;
+}
+.mini-container button{
+    width: 207px;
+    height: 30px;
+    margin-top: 1rem; 
+    border-radius: 3px;
+    border:none; 
 }
