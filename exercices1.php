@@ -1,5 +1,6 @@
 <?php
 
+
 ?>
 
 <!DOCTYPE html>
@@ -8,26 +9,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Entrainement</title>
+    <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <div class="title">
-            <h1>Connexion</h1>
-        </div>
-        <div class="mini-container">
-          <label for="">Nom : </label>
-          <input type="text" name="name">
-          <label for="">Prenom : </label>
-          <input type="text" name="prenom">
-          <label for="">Email :</label>
-          <input type="email" name="email">
-          <label for="">Mot de passe : </label>
-          <input type="password" name="mdp">
-          <button type="submit">Connexions</button>
-        </div>
-
-
-    </div>
+    <ul class="links">
+        <li><a href="#">home,</a></li>
+        <li><a href="#">about,</a></li>
+        <li><a href="#">contact,</a></li>
+    </ul>
+     <h1>SLIDE</h1>
 </body>
 </html>
