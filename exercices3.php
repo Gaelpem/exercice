@@ -1,20 +1,17 @@
 <?php
-session_start();
-if (!isset($_SESSION["user_name"])) {
-    header("Location: exercices2.php");
-    exit;
-}
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-
-if (isset($_POST["logout"])){
-        session_destroy();
-        header("Location: exercices2.php");
-        exit;
-    }
+session_start(); 
+// l'utilisateur n'est pas encore connecté redirige vers vers la page de connection
+if(!isset($_SESSION["user_name"])){
+    header("Location: exercices.2"); 
+    exit; 
 }
 
+if(isset($_POST["button"])){
+    session_destroy(); 
+    haeder("Location: exercies2.php"); 
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,13 +21,15 @@ if (isset($_POST["logout"])){
     <title>Document</title>
 </head>
 <body>
-    <h1>Bienvenue!!!!</h1>
-    <p> 
-        Vous êtes connectés tant que : 
-        <?php echo htmlspecialchars($_SESSION["user_name"]); ?>
+    <form action="" method="post">
+    <h1>BIENVENUE DE TÊTE DE CON!!!!!!!!!!!!!!!!!!!!!!!</h1>
+    <p>
+        Vous êtes l'utilisateur 
+        <?php
+        echo $_SESSION["name"]; 
+        ?>
     </p>
-    <form method="post">
-        <button type="submit" name="logout">Page de déconnexion</button>
+    <button type="submit" name="button">Déconnexion</button>
     </form>
 </body>
 </html>
