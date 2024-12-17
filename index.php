@@ -1,23 +1,20 @@
 <?php
 session_start(); 
-  require_once  "autoload.php"; 
-  // si l'utilisateur n'est pas encore connecté il va à l'index
+require_once "autoload.php"; 
+if(!isset($_SESSION["user_name"])){
+  header("Lcation: connexion.php"); 
+  exit; 
+}
 
-  if(!isset($_SESSION['user_name'])){
-    header('location: connexion.php'); 
-    exit; 
-  }
-  if(isset($_POST['logout'])){
-   session_destroy();
-   header('location: connexion.php'); 
-    exit; 
-    
-  }
+if(isset($_POST["logout"])){
+         session_destroy(); 
+         header("location: connexion.php"); 
+}
+
 
 
 ?>
 
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,9 +23,15 @@ session_start();
   <title>Document</title>
 </head>
 <body>
-  <h1>BIENVENUE CONNARD !!!!! </h1>
-  <form  method="post">
-    <button type="submit" name="logout">Déconexion</button>
+  <h1>Bienvenue connard!!!!!!</h1>
+  <p style="color: red ; ">
+      <?php
+         echo "Vous êtes l'utilisateur" . $_SESSION["user_name"]; 
+      ?>
+    
+  </p>
+  <form action="" method="post">
+    <button type="submit" name="logout">Deconnexion</button>
   </form>
 </body>
 </html>
