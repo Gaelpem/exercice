@@ -1,7 +1,7 @@
 <?php 
 
 
-class login{
+class Login{
 
     const ERREUR_NOM = "Nom incorrect"; 
     const ERREUR_EMAIL = "Email  incorrect"; 
@@ -67,6 +67,25 @@ class login{
         $this->mdp = $mdp ; 
 
   }
+
+  public function getName() : string
+   {
+          $this->name ; 
+
+  }
+
+  public function getEmail() : string
+   {
+          $this->email; 
+
+  }
+
+  public function getMdp() : string
+  {
+         $this->mdp; 
+
+ }
+
 
 
 }
